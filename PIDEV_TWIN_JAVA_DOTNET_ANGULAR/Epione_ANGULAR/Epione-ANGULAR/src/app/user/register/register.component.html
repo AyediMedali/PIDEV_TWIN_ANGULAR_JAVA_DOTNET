@@ -1,0 +1,181 @@
+
+ <main>
+
+ <div id="hero_register">
+    <div class="container margin_120_95">			
+      <div class="row">
+        <div class="col-lg-6">
+            <div id="pass-info" class="clearfix"></div>
+            <div id="pass-info" class="clearfix"></div>
+          <h1>Please register to Epione!</h1>
+          <div id="pass-info" class="clearfix"></div>
+          <p class="lead">Now you can help us improve the quality of healthcare delivery and manage medical appointments linking patients and doctors</p>
+          <div class="box_feat_2"> 
+              <div id="pass-info" class="clearfix"></div>
+            <i class="pe-7s-map-2"></i>
+            <h3>Find doctors!</h3>
+            <p>This is your easiest way to book doctors online and take appointments </p>
+          </div>
+          <div class="box_feat_2">
+              <div id="pass-info" class="clearfix"></div>
+            <i class="pe-7s-date"></i>
+            <h3>Easly manage your appointments</h3>
+            <p>Epione will be your smart assistant for hospital operating rooms, it will help you to easily contact your doctors and manage appointments with them.</p>
+          </div>
+          <div class="box_feat_2">
+              <div id="pass-info" class="clearfix"></div>
+            <i class="pe-7s-phone"></i>
+            <h3>Instantly via Mobile</h3>
+       <p>You can also find our mobile booking platform Epione on your GoogleStore or AppStore.</p>   
+       </div>
+        </div>
+        <!-- /col -->
+        <div class="col-lg-5 ml-auto">
+          <div class="box_form">
+            <form [formGroup]="form" (ngSubmit)="OnSubmit()" #imageForm = ngForm >
+                
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="form-group">
+                      <label >Name</label> <label style="color : red"> *</label>
+                    <input formControlName="firstName" type="text" class="form-control" placeholder="First Name" required>
+                    <div *ngIf="!form.controls['firstName']?.valid && form.controls['firstName']?.touched"
+                    class="alert alert-danger" >First Name required</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label>Last Name</label><label style="color : red"> *</label>
+                    <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name" required >
+                    <div *ngIf="!form.controls['lastName']?.valid && form.controls['lastName']?.touched"
+                    class="alert alert-danger" >Last Name required</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6 ">
+                    <div class="form-group">
+                        <label>Email</label><label style="color : red"> *</label>
+                      <input formControlName="email" type="email" class="form-control" placeholder="Email">
+                      <div *ngIf="!form.controls['email']?.valid && form.controls['email']?.touched"
+                    class="alert alert-danger" >Email required</div>
+                     
+                     
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Mobile phone</label><label style="color : red"> *</label>
+                      <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Mobile Phone" >
+                      <div *ngIf="!form.controls['phoneNumber']?.valid && form.controls['phoneNumber']?.touched"
+                    class="alert alert-danger" >Phone number required</div>
+                    </div>
+                  </div>
+                </div>
+              
+             
+              <!-- /row -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label>Password</label><label style="color : red"> *</label>
+                      <table>
+                        <tr>
+                          <td> <input formControlName="password" [type]="passwordType" class="form-control" placeholder="Password" required></td>
+                          <td><i [class]="icone" (click)="togglePassword()"></i></td>
+                        </tr>
+                      </table>
+                   
+                    <div *ngIf="!form.controls['password']?.valid && form.controls['password']?.touched"
+                    class="alert alert-danger" >Password required</div>
+                   
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Confirm Password</label><label style="color : red"> *</label>
+                        <table>
+                          <tr>
+                            <td><input formControlName="confirmPassword" [type]="confirmType" class="form-control" placeholder="Confirm Password" ></td>
+                            <td> <i [class]="iconeC" (click)="toggleConfirmPassword()"></i></td>
+                          </tr>
+                        </table>
+                      
+                   <div *ngIf="form.controls.confirmPassword.errors?.MatchPassword" class="alert alert-danger" >Password mismatch!</div>
+
+                      
+                    </div>
+                  </div>
+              </div>
+            
+              <div  *ngIf="ErrorMsg" class="alert alert-danger" > {{ErrorMsg}}</div> 
+              <hr>
+              
+               <!-- /row -->
+               <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Appartment number</label>
+                      <input formControlName="numAppart" type="text" class="form-control" placeholder="Appartment number">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Street</label>
+                      <input formControlName="rue" type="text" class="form-control" placeholder="Street">
+                    </div>
+                  </div>
+                </div>
+
+                
+               <!-- /row -->
+               <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label>City</label>
+                      <input formControlName="ville" type="text" class="form-control" placeholder="City">
+                    </div>
+                  </div> 
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label>Postal code</label>
+                        <input formControlName="codePostal" type="text" class="form-control" placeholder="Postal code">
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Image</label>
+                        <table>
+                          <tr>
+                            <td> <input formControlName="image" type="file" class="form-control"  (change)="handleFileInput($event.target.files)" #Image accept="img/*"></td>
+                            <td><img [src]="imageURL" style="width:48px"></td>
+                          </tr>
+                        </table>
+                        
+                     
+                    </div></div>
+                </div>
+
+              <!-- /row -->
+            
+              <p class="text-center add_top_30"><input type="submit" class="btn_1" value="Submit"></p>
+            </form>
+          </div>
+          <!-- /box_form -->
+        </div>
+        <!-- /col -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /hero_register -->
+
+<!-- /main -->
+</main>
+
+	

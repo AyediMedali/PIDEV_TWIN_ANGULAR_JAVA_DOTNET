@@ -1,0 +1,648 @@
+<main>
+  <div id="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Category</a></li>
+        <li>Page active</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="container margin_60">
+    <div class="row">
+
+      <aside class="col-xl-3 col-lg-4" id="sidebar">
+        <div class="box_profile">
+            <div  style="position : absolute ; padding-left: 200px; padding-top: 10px ; color : #e55185" [hidden]="hideUnlike">
+                <i class="icon-heart-empty" (click)="likeDoctor()" ></i>
+              </div>
+              <div  style="position : absolute ; padding-left: 200px ; padding-top: 10px ; padding-bottom: 40px ; color : #e55185" [hidden]="hideLike">
+                  <i class="icon-heart" ></i>
+                </div>
+          <figure>
+            <img src="{{d.image}}" alt="" class="img-fluid">
+          </figure>
+          <small>{{d.specialite}}</small>
+          <h1>DR. {{d.lastName}} {{d.firstName}}</h1>
+          <span class="rating" *ngIf="average">
+            <table>
+              <tr>
+                <td>
+                  <div *ngIf="average==1">
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                  </div>
+                  <div *ngIf="average==-1">
+                      <i class="icon_star"></i>
+                      <i class="icon_star"></i>
+                      <i class="icon_star"></i>
+                      <i class="icon_star"></i>
+                      <i class="icon_star"></i>
+                    </div>
+                  <div *ngIf="average==2">
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                  </div>
+                  <div *ngIf="average==3">
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                  </div>
+                  <div *ngIf="average==4">
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star"></i>
+                  </div>
+                  <div *ngIf="average==5">
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                    <i class="icon_star voted"></i>
+                  </div>
+                </td>
+                <td><small >({{countRating}})</small></td>
+              </tr>
+            </table>
+          </span>
+
+
+          <!-- <a href="badges.html" data-toggle="tooltip" data-placement="top" data-original-title="Badge Level" class="badge_list_1"><img src="assets/img/badges/badge_1.svg" width="15" height="15" alt=""></a>-->
+
+          <ul class="statistic">
+            <li>{{countLikes}} Likes</li>
+            <li>124 Patients</li>
+          </ul>
+          <ul class="contacts">
+            <li>
+              <h6>Address</h6>{{d.adresse.numAppart}} {{d.adresse.rue}}, {{d.adresse.ville}}, {{d.adresse.codePostal}}
+            </li>
+            <li>
+              <h6>Phone</h6><a href="#">+216{{d.phoneNumber}}</a>
+            </li>
+          </ul>
+          <div class="text-center"><a href="https://www.google.com/maps/place/{{d.adresse.ville}}" class="btn_1 outline"
+              target="_blank"><i class="icon_pin"></i> View on map</a></div>
+        </div>
+      </aside>
+
+
+      <div class="col-xl-9 col-lg-8">
+
+        <div class="tabs_styled_2">
+          <ul class="nav nav-tabs" role="tablist">
+
+
+            <li class="nav-item">
+              <a class="nav-link  active " id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general"
+                aria-expanded="true">General info</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews">Reviews</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " id="book-tab" data-toggle="tab" href="#book" role="tab" aria-controls="book">Book an
+                appointment</a>
+            </li>
+
+          </ul>
+
+
+          <div class="tab-content">
+
+            <div class="tab-pane fade show " id="book" role="tabpanel" aria-labelledby="book-tab">
+              <p class="lead add_bottom_30">Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales
+                leo, eget blandit nunc tortor eu nibh. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+              <form>
+                <div class="main_title_3">
+                  <h3><strong>1</strong>Select your date</h3>
+                </div>
+                <div class="form-group add_bottom_45">
+                  <div id="calendar">
+
+                  </div>
+                  <input type="hidden" id="my_hidden_input">
+
+                  <ul class="legend">
+                    <li><strong></strong>Available</li>
+                    <li><strong></strong>Not available</li>
+                  </ul>
+                </div>
+                <div class="main_title_3">
+                  <h3><strong>2</strong>Select your time</h3>
+                </div>
+                <div class="row justify-content-center add_bottom_45">
+                  <div class="col-md-3 col-6 text-center">
+                    <ul class="time_select">
+                      <li>
+                        <input type="radio" id="radio1" name="radio_time" value="09.30am">
+                        <label for="radio1">09.30am</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio2" name="radio_time" value="10.00am">
+                        <label for="radio2">10.00am</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio3" name="radio_time" value="10.30am">
+                        <label for="radio3">10.30am</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio4" name="radio_time" value="11.00am">
+                        <label for="radio4">11.00am</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio5" name="radio_time" value="11.30am">
+                        <label for="radio5">11.30am</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio6" name="radio_time" value="12.00am">
+                        <label for="radio6">12.00am</label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-3 col-6 text-center">
+                    <ul class="time_select">
+                      <li>
+                        <input type="radio" id="radio7" name="radio_time" value="01.30pm">
+                        <label for="radio7">01.30pm</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio8" name="radio_time" value="02.00pm">
+                        <label for="radio8">02.00pm</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio9" name="radio_time" value="02.30pm">
+                        <label for="radio9">02.30pm</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio10" name="radio_time" value="03.00pm">
+                        <label for="radio10">03.00pm</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio11" name="radio_time" value="03.30pm">
+                        <label for="radio11">03.30pm</label>
+                      </li>
+                      <li>
+                        <input type="radio" id="radio12" name="radio_time" value="04.00pm">
+                        <label for="radio12">04.00pm</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+
+                <div class="main_title_3">
+                  <h3><strong>3</strong>Select visit</h3>
+                </div>
+                <ul class="treatments clearfix">
+                  <li>
+                    <div class="checkbox">
+                      <input type="checkbox" class="css-checkbox" id="visit1" name="visit1">
+                      <label for="visit1" class="css-label">Back Pain visit <strong>$55</strong></label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox">
+                      <input type="checkbox" class="css-checkbox" id="visit2" name="visit2">
+                      <label for="visit2" class="css-label">Cardiovascular screen <strong>$55</strong></label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox">
+                      <input type="checkbox" class="css-checkbox" id="visit3" name="visit3">
+                      <label for="visit3" class="css-label">Diabetes consultation <strong>$55</strong></label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox">
+                      <input type="checkbox" class="css-checkbox" id="visit4" name="visit4">
+                      <label for="visit4" class="css-label">Icontinence visit <strong>$55</strong></label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox">
+                      <input type="checkbox" class="css-checkbox" id="visit5" name="visit5">
+                      <label for="visit5" class="css-label">Foot Pain visit <strong>$55</strong></label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox">
+                      <input type="checkbox" class="css-checkbox" id="visit6" name="visit6">
+                      <label for="visit6" class="css-label">Food intollerance visit <strong>$55</strong></label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox">
+                      <input type="checkbox" class="css-checkbox" id="visit7" name="visit7">
+                      <label for="visit7" class="css-label">Neck Pain visit <strong>$55</strong></label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox">
+                      <input type="checkbox" class="css-checkbox" id="visit8" name="visit8">
+                      <label for="visit8" class="css-label">Back Pain visit <strong>$55</strong></label>
+                    </div>
+                  </li>
+                </ul>
+              </form>
+              <hr>
+              <p class="text-center"><a href="booking-page.html" class="btn_1 medium">Book Now</a></p>
+            </div>
+
+
+            <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+
+
+              <div class="indent_title_in">
+                <i class="pe-7s-user"></i>
+                <h3>Professional statement</h3>
+              </div>
+              <div class="wrapper_indent">
+                <h6>Specializations</h6>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <ul class="bullets">
+                      <li *ngFor="let e of d.expertises">{{e.nom}}</li>
+                      
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+
+
+              <hr>
+
+              <div class="indent_title_in">
+                <i class="pe-7s-news-paper"></i>
+                <h3>Education</h3>
+                <ul>
+                  <li *ngFor="let f of d.formations">{{f.date |date}} - {{f.diplome}}</li>
+                </ul>
+              </div>
+              <div class="wrapper_indent">
+                <p>Curriculum</p>
+                <ul class="list_edu">
+                  <li><strong>{{f.date | date}}</strong> - {{f.diplome}} </li>
+                </ul>
+
+              </div>
+
+
+              <hr>
+
+              <div class="indent_title_in">
+                <i class="pe-7s-cash"></i>
+                <h3>Prices &amp; Payments</h3>
+              </div>
+              <div class="wrapper_indent">
+                <p>These fees are communicated to you by the practitioner as an indication. They may vary
+                  depending on the type of care ultimately performed in the office, the number of consultations and the
+                  additional acts required. In case of exceeding
+                  rates, the practitioner must notify the patient in advance.</p>
+                <table class="table table-striped" style="width:450px">
+                  <thead>
+                    <tr>
+                      <th>Service - Visit</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let x of d.tarifs">
+                      <td>{{x.description}}</td>
+                      <td>{{x.tarif}} $</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+            </div>
+
+
+            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+              <div class="reviews-container">
+
+                <div class="row" style="padding-left: 310px">
+                  <div *ngIf="msgRating">
+                    <img style=" width : 230px ; height: 100px ; position : absolute" src="/assets/img/star.gif">
+                  </div>
+
+                  <div>
+
+                    <div id="review_summary">
+
+                      <div *ngIf="countRating" style="position : relative"><strong>{{countRating}}</strong></div>
+
+
+                      <p><small style="position : relative">people rated this doctor</small></p>
+                      <div style="color : #e55185 ; font-weight: bold" *ngIf="msgRating">{{msgRating}}</div>
+
+                      <div *ngIf="!hideRating">
+
+                        <div class="rating" style="padding-left: 29px">
+
+                          <table>
+                            <tr>
+                              <td>
+                                <div *ngIf="!star1">
+                                  <i class="icon_star" (click)="star1Change()"></i>
+                                </div>
+                                <div *ngIf="star1">
+                                  <i class="icon_star voted" (click)="star1Change()"></i>
+                                </div>
+                              </td>
+                              <td>
+                                <div *ngIf="!star2">
+                                  <i class="icon_star" (click)="star2Change()"></i>
+                                </div>
+                                <div *ngIf="star2">
+                                  <i class="icon_star voted" (click)="star2Change()"></i>
+                                </div>
+                              </td>
+                              <td>
+                                <div *ngIf="!star3">
+                                  <i class="icon_star" (click)="star3Change()"></i>
+                                </div>
+                                <div *ngIf="star3">
+                                  <i class="icon_star voted" (click)="star3Change()"></i>
+                                </div>
+                              </td>
+                              <td>
+                                <div *ngIf="!star4">
+                                  <i class="icon_star" (click)="star4Change()"></i>
+                                </div>
+                                <div *ngIf="star4">
+                                  <i class="icon_star voted" (click)="star4Change()"></i>
+                                </div>
+                              </td>
+                              <td>
+                                <div *ngIf="!star5">
+                                  <i class="icon_star" (click)="star5Change()"></i>
+                                </div>
+                                <div *ngIf="star5">
+                                  <i class="icon_star voted" (click)="star5Change()"></i>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+
+                        </div>
+
+                        <button type="submit" class="btn_1" (click)="rate()">Rate Now</button>
+
+                        <p><small>Be the next one</small></p>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+
+
+
+                </div>
+
+                <hr>
+                <div *ngIf="noComment" style="padding-left: 320px">
+                  <p class="contacts" style="font-size: 16px">{{noComment}}</p>
+                </div>
+                <div class="review-box clearfix" *ngFor="let c of comments ; let j = index">
+                  <div *ngFor="let r of allRates ; let i = index">
+
+                    <figure class="rev-thumb"><img src="assets/img/{{c.patient.image}}" alt="">
+                    </figure>
+
+
+                    <div *ngIf="r.patient.id==c.patient.id&&r.doctor.id==c.doctor.id">
+                      
+                      {{ fonction(j,i) }}
+                    
+
+                      <div class="rev-content">
+
+                        <table>
+                          <tr>
+                            <td>
+                              <div *ngIf="r.note==1">
+                                <div class="rating">
+                                  <i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i><i
+                                    class="icon_star"></i><i class="icon_star"></i>
+                                </div>
+                              </div>
+                              <div *ngIf="r.note==2">
+                                <div class="rating">
+                                  <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i
+                                    class="icon_star"></i><i class="icon_star"></i>
+                                </div>
+                              </div>
+                              <div *ngIf="r.note==3">
+                                <div class="rating">
+                                  <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i
+                                    class="icon_star"></i><i class="icon_star"></i>
+                                </div>
+                              </div>
+                              <div *ngIf="r.note==4">
+                                <div class="rating">
+                                  <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i
+                                    class="icon_star voted"></i><i class="icon_star"></i>
+                                </div>
+                              </div>
+                              <div *ngIf="r.note==5">
+                                <div class="rating">
+                                  <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i
+                                    class="icon_star voted"></i><i class="icon_star voted"></i>
+                                </div>
+                              </div>
+                            </td>
+
+                            <td style="width : 660px">
+                              <div *ngIf="r.note==1&&c.patient.id!=userId">
+                                <small>({{c.patient.firstName}} gave this doctor 1 out of 5 stars)</small>
+                              </div>
+                              <div *ngIf="r.note==1&&c.patient.id==userId">
+                                <small>(You gave this doctor 1 out of 5 stars)</small>
+                              </div>
+                              <div *ngIf="r.note==2&&c.patient.id!=userId">
+                                <small>({{c.patient.firstName}} gave this doctor 2 out of 5 stars)</small>
+                              </div>
+                              <div *ngIf="r.note==2&&c.patient.id==userId">
+                                <small>(You gave this doctor 2 out of 5 stars)</small>
+                              </div>
+                              <div *ngIf="r.note==3&&c.patient.id!=userId">
+                                <small>({{c.patient.firstName}} gave this doctor 3 out of 5 stars)</small>
+                              </div>
+                              <div *ngIf="r.note==3&&c.patient.id==userId">
+                                <small>(You gave this doctor 3 out of 5 stars)</small>
+                              </div>
+                              <div *ngIf="r.note==4&&c.patient.id!=userId">
+                                <small>({{c.patient.firstName}} gave this doctor 4 out of 5 stars)</small>
+                              </div>
+                              <div *ngIf="r.note==4&&c.patient.id==userId">
+                                <small>(You gave this doctor 4 out of 5 stars)</small>
+                              </div>
+                              <div *ngIf="r.note==5&&c.patient.id!=userId">
+                                <small>({{c.patient.firstName}} gave this doctor 5 out of 5 stars)</small>
+                              </div>
+                              <div *ngIf="r.note==5&&c.patient.id==userId">
+                                <small>(You gave this doctor 5 out of 5 stars)</small>
+                              </div>
+
+                            </td>
+                            <td>
+                              <!---->
+                              <div *ngIf="c.patient.id==userId">
+                                <div>
+                                  <span> <i class=" icon-ellipsis-vert" (click)="show(c.id)"></i></span>
+                                </div>
+                                <div *ngIf="showMenu  && c.id==identifiant" style="text-align: left ; font-size: 12px ; padding-right: 40px">
+                                  <ul style="position: absolute ">
+                                    <li><i class="icon-trash-circled" (click)="deleteComment(c)">Delete</i>
+                                    </li>
+                                    <li><i class="icon-pencil-circled" (click)="editComment(c)">Edit</i></li>
+                                  </ul>
+
+                                </div>
+                              </div>
+
+                            </td>
+                          </tr>
+                        </table>
+
+
+
+
+                        <div class="rev-info">
+                          {{c.patient.firstName}} – {{c.date | date}}
+                        </div>
+                        <div class="rev-text">
+                          <p>
+                            {{c.content}}
+                          </p>
+
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div >
+                      <div *ngIf="i==1" [hidden]="starHide">
+                        <div *ngIf="r.patient.id!=c.patient.id||r.doctor.id!=c.doctor.id">
+
+                          <div class="rev-content">
+
+                            <table>
+                              <tr>
+                                <td>
+
+                                  <div *ngIf="r.patient.id!=c.patient.id||r.doctor.id!=c.doctor.id">
+                                    <div class="rating">
+                                      <i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i
+                                        class="icon_star"></i><i class="icon_star"></i>
+                                    </div>
+                                  </div>
+                                  
+
+                                </td>
+
+                                <td style="width : 660px">
+
+
+                                  <div *ngIf="r.patient.id!=c.patient.id||r.doctor.id!=c.doctor.id">
+                                    <div *ngIf="c.patient.id!=userId">
+                                      <small> ({{c.patient.firstName}} didn't rate this doctor yet..)</small>
+                                    </div>
+                                    <div *ngIf="c.patient.id==userId">
+                                      <small> (You didn't rate this doctor yet..) </small>
+                                    </div>
+                                  </div>
+
+                                </td>
+                                <td>
+                                  <!---->
+                                  <div *ngIf="c.patient.id==userId">
+                                    <div>
+                                      <span> <i class=" icon-ellipsis-vert" (click)="show(c.id)"></i></span>
+                                    </div>
+                                    <div *ngIf="showMenu  && c.id==identifiant" style="text-align: left ; font-size: 12px ; padding-right: 40px">
+                                      <ul style="position: absolute ">
+                                        <li><i class="icon-trash-circled" (click)="deleteComment(c)">Delete</i>
+                                        </li>
+                                        <li><i class="icon-pencil-circled" (click)="editComment(c)">Edit</i></li>
+                                      </ul>
+
+                                    </div>
+                                  </div>
+
+                                </td>
+                              </tr>
+                            </table>
+                            <div class="rev-info">
+                              {{c.patient.firstName}} – {{c.date | date}}
+                            </div>
+                            <div class="rev-text">
+                              <p>
+                                {{c.content}}
+                              </p>
+
+
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <form [formGroup]="form" (ngSubmit)="OnSubmit()">
+                  <input type="text" class="form-control" formControlName="contenu" placeholder="your comment.."
+                    required>
+                  <div *ngIf="!form.controls['contenu']?.valid && form.controls['contenu']?.touched || msgError" class="alert alert-danger">please
+                    enter some content</div>
+                  <br>
+                  <div style="padding-left: 585px"> <button type="submit" [disabled]="!form.valid" class="btn_1">Leave
+                      a comment</button></div>
+
+                </form>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+  $('#calendar').datepicker({
+    todayHighlight: true,
+    daysOfWeekDisabled: [0],
+    weekStart: 1,
+    format: "yyyy-mm-dd",
+    datesDisabled: ["2017/10/20", "2017/11/21", "2017/12/21", "2018/01/21", "2018/02/21", "2018/03/21"],
+  });
+</script>

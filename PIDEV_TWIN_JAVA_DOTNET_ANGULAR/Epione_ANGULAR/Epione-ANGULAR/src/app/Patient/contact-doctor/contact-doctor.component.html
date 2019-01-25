@@ -1,0 +1,60 @@
+<main>
+  
+  <!-- /map -->
+  
+  <div class="container margin_60_35">
+    <div class="row">
+      <aside class="col-lg-3 col-md-4">
+        <div id="contact_info">
+          <h3>Contacts info</h3>
+         <figure>
+           <img src="{{docteur.image}}" alt="">
+         </figure> 
+          <p>
+            {{docteur.adresse.numAppart}} {{docteur.adresse.rue}} {{docteur.adresse.ville}}, {{docteur.adresse.codePostal}} <br> + (216) {{docteur.phoneNumber}}<br>
+            <a href="#">{{docteur.email}}</a>
+          </p>
+         <a href="https://www.google.com/maps/place/{{docteur.adresse.ville}}" class="btn_1 add_bottom_45"
+            target="_blank"><i class="icon_pin"></i> View on map</a>
+            
+         
+         
+        </div>
+      </aside>
+      <!--/aside -->
+      <div class=" col-lg-8 col-md-8 ml-auto">
+        <div class="box_general">
+          <br><br>
+          <h3>Contact DR. {{docteur.lastName}}</h3>
+          <p>
+              You can now send a private message to your doctor.
+          </p>
+          <div>
+            <div id="message-contact"></div>
+            <form [formGroup]="form" (ngSubmit)="OnSubmit()">
+             <br>
+             
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <textarea rows="5" id="message_contact" formControlName="content" required name="message_contact" class="form-control" style="height:100px;" placeholder="your message.."></textarea>
+                 <div *ngIf="msgError" class="alert alert-danger">{{msgError}}</div>
+                 <div *ngIf="msgSuccess" class="alert alert-success">{{msgSuccess}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+              <button type="submit" class="btn_1 add_top_20" id="submit-contact">Send Message</button></div>
+            </form>
+            <br><br>
+          </div>
+          <!-- /col -->
+        </div>
+      </div>
+      <!-- /col -->
+    </div>
+    <!-- End row -->
+  </div>
+  <!-- /container -->
+</main>
+<!-- /main -->

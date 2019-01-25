@@ -1,0 +1,157 @@
+
+		<div class="hero_home version_1">
+        <div class="content">
+          <h3>Find a Doctor!</h3>
+          <p>
+          </p>
+          <form [formGroup]="specSearch" (ngSubmit)="OnSubmit()">
+            <div id="custom-search-input">
+              <div class="input-group">
+                <select formControlName="specialite" class=" search-query" placeholder="Ex. Name, Specialization ....">
+                  <option *ngFor="let spec of specialites" [value]="spec.lien">{{spec.nom}}</option>
+                </select>
+                <!--<input formControlName="specialite" type="text" class=" search-query" placeholder="Ex. Name, Specialization ....">-->
+                <input type="submit" class="btn_search" value="Search">
+              </div>
+              
+              <ul>
+                <li>You are :   </li>
+                <li>
+                  <a routerLink="loginAdmin">
+                  <input type="radio" id="all" name="rado_search" value="all"  >
+                  <label for="all" >Admin</label> </a>
+                </li>
+                <li>
+                    <a routerLink="loginDoctor">
+                  <input type="radio" id="doctor" name="radio_search" value="doctor">
+                  <label for="doctor">Doctor</label></a>
+                </li>
+                <li>
+                    <a routerLink="loginPatient">
+                  <input type="radio" id="clinic" name="radio_search" value="clinic">
+                  <label for="clinic">Patient</label></a>
+                </li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- /Hero -->
+  
+      <div class="container margin_120_95">
+        <div class="main_title">
+          <h2>Are you looking for a doctor who can help you and specializes in <strong>{{specialiteCookie}}</strong> ?</h2>
+          <p>These are doctors that can help you with your problems.</p>
+        </div>
+        <div class="row justify-content-center" >
+          <div class="col-xl-4 col-lg-5 col-md-6" *ngFor="let x of ListDoctors">
+              <div class="list_home">
+  
+                  <div class="list_title main_title" id="cardDoc"  >
+
+                  <p><img src="{{x.image}}" alt="" class="img-fluid" width="200" height="300"></p>
+                  <p >{{x.firstName}} {{x.LastName}}</p>
+                  <p >{{x.presentation.substr(1, 150)}}...</p>
+                  <p class="text-center"><a routerLink="details/{{x.id}}" class="btn_1 medium">Details</a></p>
+
+
+                  </div>
+              </div>
+          </div>
+
+        </div>
+        <!-- /row -->
+  
+      </div>
+
+
+
+
+      <div id="app_section">
+        <div class="container">
+          <div class="row justify-content-around">
+            <div class="col-md-5">
+              <p><img src="{{doctor.image}}" alt="" class="img-fluid" width="280" height="433"></p>
+            </div>
+            <div class="col-md-6">
+              <small>News</small>
+              <h3>The Most <strong>Recent Doctor</strong> in our website</h3>
+              <h3>{{doctor.firstName}} {{doctor.lastName}}</h3>
+              <p class="lead">{{doctor.presentation}}</p>
+              <li><a routerLink="details/{{doctor.id}}" class="btn_listing">View details</a></li>
+              <div class="app_buttons wow" data-wow-offset="100">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 43.1 85.9" style="enable-background:new 0 0 43.1 85.9;" xml:space="preserve">
+                <path stroke-linecap="round" stroke-linejoin="round" class="st0 draw-arrow" d="M11.3,2.5c-5.8,5-8.7,12.7-9,20.3s2,15.1,5.3,22c6.7,14,18,25.8,31.7,33.1" />
+                <path stroke-linecap="round" stroke-linejoin="round" class="draw-arrow tail-1" d="M40.6,78.1C39,71.3,37.2,64.6,35.2,58" />
+                <path stroke-linecap="round" stroke-linejoin="round" class="draw-arrow tail-2" d="M39.8,78.5c-7.2,1.7-14.3,3.3-21.5,4.9" />
+              </svg>
+                <a href="#0" class="fadeIn"><img src="/assets/img/apple_app.png" alt="" width="150" height="50" data-retina="true"></a>
+                <a href="#0" class="fadeIn"><img src="/assets/img/google_play_app.png" alt="" width="150" height="50" data-retina="true"></a>
+              </div>
+            </div>
+          </div>
+          <!-- /row -->
+        </div>
+        <!-- /container -->
+      </div>
+      <!-- /container -->
+  
+      <!-- /white_bg -->
+  
+      <div class="container margin_120_95">
+        <div class="main_title">
+          <h2>Find your doctor or clinic</h2>
+          <p>Nec graeci sadipscing disputationi ne, mea ea nonumes percipitur. Nonumy ponderum oporteat cu mel, pro movet cetero at.</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-xl-4 col-lg-5 col-md-6">
+            <div class="list_home">
+              <div class="list_title">
+                <i class="icon_pin_alt"></i>
+                <h3>Search by City or Zone</h3>
+              </div>
+              <ul>
+                <li><a href="list.html"><strong>23</strong>Albany</a></li>
+                <li><a href="list.html"><strong>23</strong>Albuquerque</a></li>
+                <li><a href="list.html"><strong>23</strong>Atlanta</a></li>
+                <li><a href="list.html"><strong>23</strong>Baltimore</a></li>
+                <li><a href="list.html"><strong>23</strong>Baton Rouge</a></li>
+                <li><a href="list.html"><strong>23</strong>Birmingham</a></li>
+                <li><a href="list.html"><strong>23</strong>Boston</a></li>
+                <li><a href="list.html"><strong>23</strong>Buffalo</a></li>
+                <li><a href="list.html"><strong>23</strong>Charleston</a></li>
+                <li><a href="list.html">More...</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-5 col-md-6">
+            <div class="list_home">
+              <div class="list_title">
+                <i class="icon_archive_alt"></i>
+                <h3>Search by type</h3>
+              </div>
+              <ul>
+                <li><a href="list.html"><strong>23</strong>Allergist</a></li>
+                <li><a href="list.html"><strong>23</strong>Cardiologist</a></li>
+                <li><a href="list.html"><strong>23</strong>Chiropractor</a></li>
+                <li><a href="list.html"><strong>23</strong>Dentist</a></li>
+                <li><a href="list.html"><strong>23</strong>Dermatologist</a></li>
+                <li><a href="list.html"><strong>23</strong>Gastroenterologist</a></li>
+                <li><a href="list.html"><strong>23</strong>Ophthalmologist</a></li>
+                <li><a href="list.html"><strong>23</strong>Optometrist</a></li>
+                <li><a href="list.html"><strong>23</strong>Pediatrician</a></li>
+                <li><a href="list.html">More....</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+  
+      
+      <!-- /app_section -->
+  
+  
+    <!-- /main content -->
+   

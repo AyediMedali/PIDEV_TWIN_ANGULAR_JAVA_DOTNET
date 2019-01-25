@@ -1,0 +1,56 @@
+
+  <div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active">Doctolib Requests</li>
+    </ol>
+  <div class="box_general">
+    <div class="header_box">
+      <h2 class="d-inline-block">Request List</h2>
+      <div class="filter">
+        <a (click)="exportToExcel()" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Export to Excel </a>
+
+      </div>
+      
+    </div>
+    <div class="list_general">
+      <ul *ngFor="let d of listDemandes">
+          <div *ngIf="loading">
+              <app-doctolib-loading></app-doctolib-loading>
+          </div>
+        <li>
+          <figure><img src="../../../assets/img/profile.jpg" alt=""></figure>
+          <h4>{{d.firstName}} {{d.lastName}}</h4>
+          <ul class="booking_details">
+            <li><strong>Speciality</strong> {{d.specialite}}</li>
+            <li><strong>City</strong> {{d.ville}}</li>
+            <li><strong>Email</strong>{{d.email}}</li>
+          </ul>
+          <ul class="buttons">
+            <li><a (click)="Approve(d)" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
+            <li><a (click)="Cancel(d)" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- /box_general-->
+  <nav aria-label="...">
+    <ul class="pagination pagination-sm add_bottom_30">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /pagination-->
+  </div>
+  <!-- /container-fluid-->

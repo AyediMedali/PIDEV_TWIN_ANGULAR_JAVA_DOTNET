@@ -1,0 +1,338 @@
+<main>
+  <div id="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /breadcrumb -->
+
+  <div class="container margin_60">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12">
+        <nav id="secondary_nav" >
+          <div class="container">
+            <ul class="clearfix">
+              <li><a href="#section_1" class="active">General info</a></li>
+              <li><a href="#section_1">Update profile</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div id="section_1">
+          <div class="box_general_3">
+            <div class="profile">
+              <div class="row">
+                <div class="col-lg-2 col-md-2">
+                  <figure>
+                    <img src="/assets/img/{{connectedPatient.image}}" alt="" class="img-fluid">
+                  </figure>
+                </div>
+                <div class="col-lg-7 col-md-8">
+                  <small>My profile info</small>
+                  <h1>{{connectedPatient.lastName}} {{connectedPatient.firstName}}</h1>
+                  
+                
+                  <ul class="contacts">
+                    <li>
+                      <h6>Address</h6>
+                      {{connectedPatient.adresse.numAppart}} {{connectedPatient.adresse.rue}}, {{connectedPatient.adresse.ville}} {{connectedPatient.adresse.codePostal}}
+                      <a href="https://www.google.com/maps/place/{{connectedPatient.adresse.ville}}" target="_blank"> <strong> - View my address on map</strong></a>
+                    </li>
+                    <li>
+                      <h6>Phone</h6> <a href="">+216{{connectedPatient.phoneNumber}}</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <hr>
+<!------------------------------------------------------------------------------------>
+            <div role="tablist" class="add_bottom_45 accordion" id="reccomendations">
+                <div class="card">
+                  <div class="card-header" role="tab">
+                    <h5 class="mb-0">
+                      <a data-toggle="collapse" href="#collapseOne_reccomendations" aria-expanded="true"><i class="indicator icon_plus_alt2"></i>
+                        <div class="indent_title_in">
+                            <i class="pe-7s-note2"></i>
+                            <h3>My comments</h3>
+                          </div></a>
+                    </h5>
+                  </div>
+      
+                  <div id="collapseOne_reccomendations" class="collapse" role="tabpanel" data-parent="#reccomendations">
+                    <div class="card-body">
+                        <div class="wrapper_indent">
+
+                            <div [hidden]="showNoCommentDiv">
+                              you have no comment 
+                            </div>
+              
+              
+                            <div class="reviews-container" *ngFor="let c of listeComments">
+                                <div class="review-box clearfix">
+                                    <figure class="rev-thumb"><img style="width : 80px" src="/assets/img/{{c.patient.image}}" alt="">
+                                    </figure>
+                                    <div class="rev-content">
+                                     
+                                      <div class="rev-info">
+                                        You left a comment for <a routerLink="details/{{c.doctor.id}}">DR. {{c.doctor.lastName}} </a>- {{c.date | date}} : 
+                                      </div>
+                                      <div class="rev-text">
+                                        <p>
+                                          {{c.content}}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+              
+              
+                                          <!-- /row-->
+                          </div>
+                        </div>
+                  </div>
+                </div>
+                <!-- /card -->
+                <div class="card">
+                  <div class="card-header" role="tab">
+                    <h5 class="mb-0">
+                      <a class="collapsed" data-toggle="collapse" href="#collapseTwo_reccomendations" aria-expanded="false">
+                        <i class="indicator icon_plus_alt2"></i> <div class="indent_title_in">
+                            <i class="pe-7s-star"></i>
+                            <h3>My Ratings</h3>
+                            
+                          </div>
+                      </a>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo_reccomendations" class="collapse" role="tabpanel" data-parent="#reccomendations">
+                    <div class="card-body">
+                        <div class="wrapper_indent">
+             
+                            <ul *ngFor="let r of listeRatings">
+                              <li>
+                                <div *ngIf="r.note==1">
+                                  <span class="rating">
+                                      <i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i>
+                                  </span>
+                                 
+                                  - You gave <strong><a style="color : #78d0c4" routerLink="details/{{r.doctor.id}}">Dr. {{r.doctor.lastName}} {{r.doctor.firstName}}</a></strong> 1 out of 5 stars
+                              </div>
+                              <div *ngIf="r.note==2">
+                                  <span class="rating">
+                                      <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i>
+                                  </span>
+                                
+                                  - You gave <strong><a style="color : #78d0c4" routerLink="details/{{r.doctor.id}}">Dr. {{r.doctor.lastName}} {{r.doctor.firstName}}</a></strong> 2 out of 5 stars
+                              </div>
+                              <div *ngIf="r.note==3">
+                                  <span class="rating">
+                                      <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i>
+                                  </span>
+                                
+                                  - You gave <strong><a style="color : #78d0c4" routerLink="details/{{r.doctor.id}}">Dr. {{r.doctor.lastName}} {{r.doctor.firstName}}</a></strong> 3 out of 5 stars
+                              </div>
+                              <div *ngIf="r.note==4">
+                                  <span class="rating">
+                                      <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
+                                  </span>
+                                
+                                  - You gave <strong><a style="color : #78d0c4" routerLink="details/{{r.doctor.id}}">Dr. {{r.doctor.lastName}} {{r.doctor.firstName}}</a></strong> 4 out of 5 stars
+                              </div>
+                              <div *ngIf="r.note==5">
+                                  <span class="rating">
+                                      <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i>
+                                  </span>
+                                
+                                  - You gave <strong><a style="color : #78d0c4" routerLink="details/{{r.doctor.id}}">Dr. {{r.doctor.lastName}} {{r.doctor.firstName}}</a></strong> 5 out of 5 stars
+                              </div>
+                              </li>
+                            </ul>
+                          </div> </div>
+                  </div>
+                </div>
+                <!-- /card -->
+                <div class="card">
+                  <div class="card-header" role="tab">
+                    <h5 class="mb-0">
+                      <a class="collapsed" data-toggle="collapse" href="#collapseThree_reccomendations" aria-expanded="false">
+                        <i class="indicator icon_plus_alt2"></i><div class="indent_title_in">
+                            <i class="pe-7s-mail"></i>
+                            <h3>My messages</h3>
+                            <p>You have sent {{countMsgP}} messages.</p>
+                          </div>
+                      </a>
+                    </h5>
+                  </div>
+                  <div id="collapseThree_reccomendations" class="collapse" role="tabpanel" data-parent="#reccomendations">
+                    <div class="card-body">
+                        <div class="wrapper_indent">
+                            <table>
+                              <tr *ngFor="let m of listeMessages">
+                                <td><figure><img style="width : 50px" src="{{m.doctor.image}}" alt=""></figure></td>
+                                <td style="padding-left: 25px ; ">
+                                  <small>   You sent a message to DR. {{m.doctor.lastName}}  - {{m.date | date}} </small>
+                             <p><i class="icon-spin5 animate-spin" *ngIf="m.seen==false" style="color: orange"></i><i class="icon-ok" *ngIf="m.seen==true" style="color: green"></i> {{m.content}}  -   
+                               <small *ngIf="m.seen==false" style="color: orange">unseen</small>
+                               <small *ngIf="m.seen==true" style="color: green">seen</small>
+                             </p>
+                            </td>
+                              </tr>
+                            </table>
+                           
+                          </div>
+                     </div>
+                  </div>
+                </div>
+                <!-- /card -->
+              </div>
+
+
+
+            <div class="text-center">
+              <button type="submit" (click)="showSection1()" class="btn_1 outline">
+                <i class="icon-magic"></i>
+                 Update Profile</button>
+            </div>
+
+
+            <!--  /wrapper_indent -->
+          </div>
+          <!-- /section_1 -->
+        </div>
+        <!-- /box_general -->
+
+        <div id="section_2" [hidden]="showDiv2">
+          <div class="box_general_3">
+            <form  [formGroup]="form" (ngSubmit)="onSubmit()" #imageForm = ngForm>
+
+              <div class="padding_bottom">
+                  
+                      <div class="indent_title_in">
+                          <i class="pe-7s-id"></i>
+                          <h3>Updating profile details..</h3>
+                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                      <label>Your photo</label>
+                      <figure>
+                        <img [src]="imageURL" alt=""> </figure>
+                        <input formControlName="image" type="file" class="form-control"  (change)="handleFileInput($event.target.files)" #Image accept="img/*">
+                        </div>
+                    </div>
+                    <div class="col-md-8 add_top_30">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Name</label>
+                            <input formControlName="firstName" required type="text" class="form-control" [value]="connectedPatient.firstName">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Last name</label>
+                            <input formControlName="lastName" required  type="text" class="form-control" [value]="connectedPatient.lastName">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /row-->
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Telephone</label>
+                            <input formControlName="phoneNumber" required type="text" class="form-control" [value]="connectedPatient.phoneNumber">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Email</label>
+                            <input formControlName="email" required type="text" class="form-control" [value]="connectedPatient.email">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /row-->
+                       <!-- /row-->
+                       <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>New password</label>
+                              <input  formControlName="password" required type="password" class="form-control" placeholder="enter your new password">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Confirm password</label>
+                              <input formControlName="confirmPassword" required type="password" class="form-control" placeholder="confirm new password">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /row-->
+                         <!-- /row-->
+                         <hr>
+                       <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Postal code</label>
+                              <input type="text" formControlName="codePostal" class="form-control" [value]="connectedPatient.adresse.codePostal">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Appart number</label>
+                              <input type="text" formControlName="numAppart" class="form-control" [value]="connectedPatient.adresse.numAppart">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /row-->
+                         <!-- /row-->
+                       <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Street</label>
+                              <input type="text" formControlName="rue" class="form-control" [value]="connectedPatient.adresse.rue">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>City</label>
+                              <input type="email" formControlName="ville" class="form-control" [value]="connectedPatient.adresse.ville">
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="msgError" class="alert alert-danger" >{{msgError}}</div>
+
+                        <div *ngIf="msgSuccess" class="alert alert-danger" >{{msgSuccess}}</div>
+                      <br>
+                        <div class="text-center" >
+                            <input class="btn_1 medium" type="submit" value="Submit">
+                          </div>
+                        <!-- /row-->
+                    </div>
+                  </div>
+              
+                <!-- /box_general-->
+
+            <!-- End review-container -->
+           
+          </form>  </div>
+          
+       
+       
+       <!--------------------------------------------------->
+        </div>
+        <!-- /section_2 -->
+      </div>
+      <!-- /col -->
+     
+      <!-- /asdide -->
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</main>
+<!-- /main -->
